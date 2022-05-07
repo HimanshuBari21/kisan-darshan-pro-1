@@ -1,0 +1,13 @@
+.navbar{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 10;
+}
+.ex-nav{
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    z-index: 10;
+}

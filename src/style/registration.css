@@ -1,0 +1,132 @@
+.registration {
+  background: rgba(144, 238, 144, 0.815);
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 20px;
+}
+
+#wrapper {
+  margin: auto;
+  width: 700px;
+  max-width: 80vw;
+  background-color: rgba(255, 255, 255, 0.69);
+  padding: 40px;
+  border-radius: 40px;
+  transform: translateY(20px);
+  backdrop-filter: blur(1px);
+  box-shadow: 0px 4px 40px 3px rgba(0, 0, 0, 0.582);
+}
+
+legend {
+  font-size: 20px;
+  background-color: lightgreen;
+  width: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 6px 40px;
+  margin: auto;
+  border-radius: 22px;
+  border: 2px solid black;
+  transform: translateY(-60px) scale(1.2, 1.2);
+}
+
+.inputs-reg,
+.inputs-reg-label {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 8px;
+  padding: 10px 20px;
+  border: none;
+  margin: 10px 0px;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+.inputs-reg-label {
+  background: rgba(255, 255, 255, 0.664);
+}
+
+#submit {
+  background-color: lightgreen;
+  cursor: pointer;
+  margin: auto;
+  width: 100%;
+  border-bottom: none;
+  border: 2px solid black;
+}
+
+/* .input-icon{
+            font-size: 12px;
+            transform: translateY(10px);
+            background-color: white;
+            color: black;
+            border-radius: 50%;
+            padding: 8px;
+        } */
+.other-link {
+  font-weight: 600;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2px 10px;
+}
+
+@media (max-width: 420px) {
+  input {
+    width: 200px;
+  }
+}
+
+#agree {
+  font-size: 40px;
+}
+
+label {
+  margin-right: 15px;
+  line-height: 32px;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+
+  border: 2px solid #000;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+
+  position: relative;
+  top: 2px;
+}
+
+input[type="radio"]:checked {
+  border: 8px solid rgb(0, 157, 255);
+}
+@media (max-width: 611px) {
+  #wrapper {
+    max-width: 100vw;
+  }
+  .registration {
+    padding: 0;
+  }
+  .inputs-reg,
+  .inputs-reg-label {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 8px;
+    padding: 3px 16px;
+    border: none;
+    margin: 6px 0px;
+    width: 100%;
+    border-bottom: 2px solid black;
+  }
+  input[type="checkbox"] {
+    width: auto;
+  }
+}

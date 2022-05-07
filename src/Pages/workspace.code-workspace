@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "c:\\Users\\Sachin\\Documents\\ipl"
+		},
+		{
+			"path": "c:\\xampp\\htdocs\\IPL"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ipl"
+	}
+}

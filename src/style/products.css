@@ -1,0 +1,41 @@
+#Product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.products {
+    margin: 20px;
+    width: 255px;
+}
+
+.card-img-top {
+    max-height: 260px !important;
+    width: auto !important;
+}
+
+@media (max-width:511px) {
+    .products {
+        margin: 20px;
+        width: 155px;
+    }
+
+    .card-img-top {
+        max-height: 322px !important;
+        width: 150px !important;
+    }
+    .Home .card{
+        width: 150px !important;
+    }
+}
+
+.products .remove {
+    font-size: 12px;
+    padding: 4px 8px;
+}
+.farmer-store .card-img-top{
+    width: 100% !important;
+}
+.farmer-store .add-items .btn{
+    margin: 0 !important;
+}

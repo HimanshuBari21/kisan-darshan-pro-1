@@ -62,7 +62,7 @@ Jai Jawan, Jai Kishan - Lal Bahadur Shastris
                     <div className="bg-img-fix">
                         {/* Empty Space */}
                     </div>
-                    <div className="tm-container-inner tm-features">
+                    {/* <div className="tm-container-inner tm-features">
                         <div className="row">
                             <div className="col-lg-4">
                                 <div className="tm-feature">
@@ -86,15 +86,15 @@ Jai Jawan, Jai Kishan - Lal Bahadur Shastris
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
-                <div className="tm-history-inner">
+                {/* <div className="tm-history-inner">
                     <img src={farmerGirl} alt="Image" className="img-fluid tm-history-img"/>
                         <div className="tm-history-text">
                             <h4 className="tm-history-title">How Our Website helps Farmer</h4>
                             <p className="tm-mb-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et voluptatem nulla corporis quasi impedit dolores nemo, eius excepturi nesciunt libero commodi praesentium dolore? Voluptatum, molestias. Vel soluta vero minima fugiat.</p>
                         </div>
-                </div>
+                </div> */}
             </div>
             <Footer />
         </>

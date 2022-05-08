@@ -93,7 +93,7 @@ function HomePage() {
                         <p>
                             If you have any Query feel free <br /> to call
                             <a href="tel:+919424824272">+91 94248 24272</a> <br /> or Mail <a href="mailto:pksharma211@gmail.com">pksharma211@gmail.com</a><br />
-                            <a href="...">Leave a Messege here</a>
+                            <Link to="/contact">Leave a Messege here</Link>
                         </p>
                     </div>
                 </div>

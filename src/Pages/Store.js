@@ -129,9 +129,9 @@ const FilteredProducts = (props) => {
                                 {
                                     filteredData.map((item, index) => {
                                         return (
-
-                                            <ProductCard index={index} data={item} />
-
+                                            <>
+                                                <ProductCard index={index} data={item} />
+                                            </>
                                         )
                                     })
                                 }
@@ -143,11 +143,11 @@ const FilteredProducts = (props) => {
         }
         else {
             return (
-            <>
-            <br /><br /><br /><br />
-            <h1>Nothing in this category</h1>
-            </>
-                )
+                <>
+                    <br /><br /><br /><br />
+                    <h1>Nothing in this category</h1>
+                </>
+            )
         }
     }
     else {
@@ -180,10 +180,17 @@ const QualityControl = (props) => {
 const ProductCard = (props) => {
     const [currentQuantity, setCurrentQuantity] = useState(1)
     const [isAdding, setIsAdding] = useState(false)
+    const [sellerAdd, setSellerAdd] = useState([])
     const navigate = useNavigate()
     const [{ user }, dispatch] = useDataLayerValue()
     var itemData = props.data
-
+    
+    useEffect(() => {
+        firebase.database().ref('users/').child(itemData.sellerUID).on('value', (snapshot) => {
+            setSellerAdd(snapshot.val());
+        })
+    }, [])
+    
     const addToCart = () => {
         const userId = user.userAuthData
         if (userId === null) {
@@ -211,7 +218,7 @@ const ProductCard = (props) => {
                             title: 'Item added to cart',
                             showConfirmButton: false,
                             timer: 1500
-                          })
+                        })
                     }).catch((error) => {
                         console.log(error.code)
                     })
@@ -225,36 +232,29 @@ const ProductCard = (props) => {
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Go to cart <i class="fa fa-shopping-cart"></i>'
-                      }).then((result) => {
+                    }).then((result) => {
                         if (result.isConfirmed) {
                             navigate("/cart")
                         }
-                      })
+                    })
                     // Swal.fire("To increase the quantity to cart.", '', "warning")
                 }
             }
         }
     }
     return (
-        <div key={`arrayElement${props.index}`} className="card products">
-            <div className="img-box" >
-                <img loading="lazy" className="card-img-top img-fluid" src={itemData.imgUrl} alt="Card image cap" />
-            </div>
-            <div className="card-body">
-                <h5 className="card-title">{itemData.name}</h5>
-                <p className="price">&#8377;{itemData.price}</p>
-                <div className="d-flex justify-content-center">
-                    {/* <QualityControl currentQuantity={currentQuantity} setCurrentQuantity={setCurrentQuantity} /> */}
-                </div>
-                <br />
-                <div className="row">
-                    {
-                        isAdding === true ? <Spinner radius={20} color={"#333"} stroke={2} visible={true} /> : ""
-                    }
+        <>
+            <div class="product">
+                <img src={itemData.imgUrl} alt="wheat" class="pro-img" />
+                <div class="pro-detail">
+                    <h3 class="pro-name">{itemData.name}</h3>
+                    <h3 class="pro-price"> ₹ {itemData.price}</h3>
+                    <p class="pro-desc"> <i className="fa-solid fa-map-marker-alt"></i> {sellerAdd.district}, {sellerAdd.state}</p>
                     <button onClick={addToCart} className="btn remove btn-success"><i className="fa-solid fa-cart-shopping"></i> Add To Cart</button>
                 </div>
             </div>
-        </div>
+            
+        </>
     )
 }
 export default Store;

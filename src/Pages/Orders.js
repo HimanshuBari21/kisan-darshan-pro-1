@@ -1,9 +1,11 @@
 import React from 'react'
+import ProductHeader from '../Component/ProductHeader'
 import ProfileComon from '../Component/ProfileComon'
 
 function Orders() {
     return (
         <body>
+            <ProductHeader />
             <br />
             <br />
             <div className="container rounded bg-white mt-5 mb-5">

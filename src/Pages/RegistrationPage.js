@@ -46,14 +46,14 @@ function RegistrationPage() {
                             <div id="wrapper">
                                 <legend>Registration</legend>
                                 <div className="d-flex justify-content-center">
-                                    <input required onChange={handleFormChanges} className="inputs-reg" type="text" name="name" id="name" placeholder="Full Name" />
+                                    <input required onChange={handleFormChanges} className="inputs-reg" type="text" name="name" id="name" placeholder="Your Name" />
                                 </div>
                                 <div className="d-flex justify-content-center">
                                 <select required name="userType" className="inputs-reg" onChange={handleFormChanges} id="inputState">
                                     <option value="">Who are you</option>
                                     <option value="consumer">Consumer</option>
                                     <option value="farmer">Farmer</option>
-                                    <option value="cooperate">co-operate</option>
+                                    <option value="cooperate">Seller or Manufacturer</option>
 
                                 </select>
                                 </div>

@@ -9,6 +9,8 @@ import ProductHeader from '../Component/ProductHeader';
 function LoginPage() {
 
   const [otpStates, setOtpStates] = useState(false)
+  const [otpIsLoading, setOtpIsLoading] = useState(false)
+
   const [{ user }] = useDataLayerValue()
   const [formData, setFormData] = useState({
     phone: '',
@@ -16,21 +18,22 @@ function LoginPage() {
   })
   const OtpMain = (props) => {
     const [EnteredOTP, setEnteredOTP] = useState()
+    setOtpIsLoading(false)
     const verifyOtp = (e) => {
       e.preventDefault()
       var confirmationResult = window.confirmationResult
       confirmationResult.confirm(EnteredOTP).then((result) => {
         setOtpStates(false)
-          var uid = result.user.uid
-          firebase.database().ref('users/').child(uid).on('value', (snapshot) => {
-            var user = snapshot.val()
-            if (user === null) {
-              window.location.replace('/register')
-            }
-            else {
-              window.location.replace('/home')
-            }
-          })
+        var uid = result.user.uid
+        firebase.database().ref('users/').child(uid).on('value', (snapshot) => {
+          var user = snapshot.val()
+          if (user === null) {
+            window.location.replace('/register')
+          }
+          else {
+            window.location.replace('/home')
+          }
+        })
       }).catch((error) => {
         if (error.code === "auth/invalid-verification-code") {
           Swal.fire("Invalid OTP", "Enter correct OTP and try again", 'error')
@@ -62,15 +65,33 @@ function LoginPage() {
       }
     });
   }
+  const SendOtpLoding = () => {
+    return (
+      <div style={{zIndex: 400,background: "#00000066" , width: "100vw", height: "100vh", position: "fixed",transform: "translate(-50%, -50%)", top: "50%", left: "50%" }}>
+        <div  className="h-100 d-flex justify-content-center align-items-center">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/YouTube_loading_symbol_3_%28transparent%29.gif" alt="" />
+        </div>
+      </div>
+    )
+
+  }
   // console.log(currentUser)
   const signIn = (e) => {
     e.preventDefault()
+    setOtpIsLoading(true)
     setUpRecaptch()
 
-
+    
     const phoneNumber = `+91${formData.phone}`;
     const appVerifier = window.recaptchaVerifier;
-    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier).catch((error)=>{
+      var code = error.code
+      if(error.code==="auth/invalid-phone-number"){
+        Swal.fire("Invalid phone number", "Enter correct phone number and try again", 'error').then(()=>{
+          window.location.reload()
+        })
+      } 
+    })
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
         setOtpStates(true)
@@ -90,7 +111,9 @@ function LoginPage() {
         {
           otpStates === true && <OtpMain phoneNo={formData.phone} />
         }
-
+        { 
+          otpIsLoading === true && <SendOtpLoding />
+        }
         <div className="d-none">
           <ProductHeader />
         </div>

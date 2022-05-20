@@ -26,6 +26,8 @@ const reducer = (state, action) => {
             return {...state, crops:action.data}
         case "SET_ITEM_TO_VERIFY":
             return {...state, itemToVerify:action.data}
+        case "SET_ALL_USERS_DATA":
+            return {...state, allUsersData:action.data}
         default:
             return state
     }

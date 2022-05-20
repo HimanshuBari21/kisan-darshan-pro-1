@@ -69,40 +69,45 @@ function FarmerStore() {
                 }
                 <br /><br />
                 <div>
-               <h5>Your Rejected Products </h5>
-                {
-                  farmerProductRejected.length ?
-                    farmerProductRejected.map((item, index) => {
-                      return (
-                        <div className="card products" key={index}>
-                          <div className="cart-img">
-                            <img className="card-img-top" style={{ width: "100%!important" }} src={item.imgUrl} alt="Card image cap" />
+                  <h5>Your Rejected Products </h5>
+                  {
+                    farmerProductRejected.length ?
+                      farmerProductRejected.map((item, index) => {
+                        return (
+                          <div className="card products" key={index}>
+                            <div className="cart-img">
+                              <img className="card-img-top" style={{ width: "100%!important" }} src={item.imgUrl} alt="Card image cap" />
+                            </div>
+                            <div className="card-body">
+                              <h5 className="card-title">{item.cropName}</h5>
+                              <p className="price">Rs. {item.price}</p>
+                              <div className="row">
+                                {/* <QualityControl cartId={props.cartId} /> */}
+                              </div>
+                              <div>
+                                <b>Reason:</b>{item.reason === "img" ? "Your img was perfect" : 'You product is over priced'}
+                              </div>
+                              <br />
+                              <div className="row">
+                                <div className="col-xs-2"><button className="btn remove btn-danger"><i className="fa-solid fa-trash"></i> Remove Item</button></div>
+                              </div>
+                            </div>
                           </div>
-                          <div className="card-body">
-                            <h5 className="card-title">{item.cropName}</h5>
-                            <p className="price">Rs. {item.price}</p>
-                            <div className="row">
-                              {/* <QualityControl cartId={props.cartId} /> */}
-                            </div>
-                            <div>
-                              <b>Reason:</b>{item.reason==="img"? "Your img was perfect": 'You product is over priced'}
-                            </div>
-                            <br />
-                            <div className="row">
-                              <div className="col-xs-2"><button className="btn remove btn-danger"><i className="fa-solid fa-trash"></i> Remove Item</button></div>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    })
-                    :
-                    <h6>No Productes are rejected</h6>
-                }
-               </div>
+                        )
+                      })
+                      :
+                      <h6>No Productes are rejected</h6>
+                  }
+                </div>
                 <br /><br />
                 <div className="d-flex add-items justify-content-between">
-                <h5>Your Products For Sell</h5>
-                <button className="btn-success btn" style={{margin: "0 !important"}}><i className="fa-solid fa-plus"></i> Add Item To Sell</button>
+                  <h5>Your Products For Sell</h5>
+                  <Link to={'/farmer/add-item-to-store'}>
+                    <button className="btn-success btn" style={{ margin: "0 !important" }}>
+                      <i className="fa-solid fa-plus"></i>
+                      Add Item To Sell
+                    </button>
+                  </Link>
                 </div>
                 {
                   farmerProductVerified.length ?
@@ -132,10 +137,10 @@ function FarmerStore() {
                         <i class="fa-solid fa-store"></i>
                       </div>
                       <h3>No Items in your store</h3>
-                      <Link to={'/farmer/add-item-to-store'}><button className="btn btn-success">Add Items to Store</button></Link>
+                      <Link to={'/farmer/add-item-to-store'}><button className="btn btn-success">Add Items to Sell</button></Link>
                     </div>
                 }
-             
+
               </div>
 
             </>

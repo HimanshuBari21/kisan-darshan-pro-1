@@ -16,6 +16,9 @@ import ContactPage from './Pages/ContactPage';
 import FarmerDataForm from './Pages/FarmerDataFrom';
 import FarmerStore from './Pages/FarmerStore';
 import AddItemToStore from './Pages/AddItemToStore';
+import CooprateProfileCreate from './Pages/CooperateProfileCreate';
+import CooperateStore from './Pages/CooperateStore';
+import Orders from './Pages/Orders';
 function App() {
     const [{ user }, dispatch] = useDataLayerValue()
     var currentUser = firebase.auth().currentUser
@@ -61,16 +64,15 @@ function App() {
                     for (let id in snapVal) {
                         rawCropsList.push({ id, ...snapVal[id] })
                     }
-                    console.log(rawCropsList)
                     dispatch({
                         type: "SET_CROPS_LIST",
                         data: rawCropsList
                     })
                 })
-               
+
             })
 
-           
+
 
         }
         loadData()
@@ -78,10 +80,10 @@ function App() {
             loadData()
         }
     }, [])
-    useEffect(()=>{
-        
+    useEffect(() => {
+
         const loadData = () => {
-           
+
             firebase.database().ref('/item-to-verify').on('value', (snapshot) => {
                 var snapVal = snapshot.val();
                 const rawToVerifyList = [];
@@ -93,14 +95,14 @@ function App() {
                     type: "SET_ITEM_TO_VERIFY",
                     data: rawToVerifyList
                 })
-               
+
             })
         }
         loadData()
-        return ()=>{
+        return () => {
             loadData()
         }
-    },[])
+    }, [])
     if (currentUser) {
         firebase.database().ref('users/').child(currentUser.uid).on('value', (snapshot) => {
             const rawUserData = snapshot.val();
@@ -110,28 +112,32 @@ function App() {
             })
         })
 
+
     }
 
     return (
         <Routes>
-            <Route exact path="/" element={<KDIndex />} />
+            <Route exact path="/" element={<HomePage />} />
             <Route exact path="/home" element={<HomePage />} />
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/profile" element={<Profile />} />
-            <Route exact path="/store/:category" element={<Store />} />
-            <Route exact path="/store" element={<Store />} />
+            {/* <Route exact path="/store/:category" element={<Store />} />
+            <Route exact path="/store" element={<Store />} /> */}
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/register" element={<RegistrationPage />} />
             <Route exact path="/place-order" element={<PlaceOrder />} />
             <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/contact" element={<ContactPage />} />
-            <Route exact path="/farmer-profile-create" element={<FarmerDataForm />} />
+            <Route exact path="/orders" element={<Orders />} />
+            <Route exact path="/create-farmer-profile" element={<FarmerDataForm />} />
             <Route exact path="/farmer/store" element={<FarmerStore />} />
             <Route exact path="farmer/add-item-to-store" element={<AddItemToStore />} />
+            <Route exact path="/create-cooprate-profile" element={<CooprateProfileCreate />} />
+            <Route exact path="cooperate/store" element={<CooperateStore />} />
             {/*<Route exact path="/contact" element={<ContactPage />} />
-      <Route exact path="/about" element={<AboutPage />} />
-      <Route exact path="/orders" element={<Orders />} />
-      <Route exact path="/change-password" element={<ChangePassword />} /> */}
+            <Route exact path="/about" element={<AboutPage />} />
+            <Route exact path="/orders" element={<Orders />} />
+            <Route exact path="/change-password" element={<ChangePassword />} /> */}
             <Route
                 path="*"
                 element={<Navigate to="/home" replace />}

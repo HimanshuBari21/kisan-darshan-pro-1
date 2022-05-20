@@ -2,6 +2,9 @@
   padding: 0px 100px;
   background-color: #fff !important;
 }
+a{
+  text-decoration: none!important;
+}
 body{
   font-family: 'Open Sans', Arial, sans-serif;
 }
@@ -27,7 +30,7 @@ body{
   align-items: center;
 }
 .bg-img-fix{
-  background-image: url(../assets/images/machinery.jpg);
+  /* background-image: url(../assets/images/machinery.jpg); */
   height: 200px;
   width: 100%;
   background-position: center;
@@ -35,9 +38,11 @@ body{
 }
 .tm-nav-link.active, .tm-nav-link:hover{
   color: #fff;
-  text-decoration: none;
+  text-decoration: none!important;
 }
-
+footer#site-footer a{
+  text-decoration: none!important;
+}
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap');
 
 
@@ -68,7 +73,7 @@ footer#site-footer section.horizontal-footer-section {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  padding: 2.38rem 2rem;
+  padding: 2.38rem 2rem 0px;
 }
 
 footer#site-footer section.horizontal-footer-section#footer-top-section {
@@ -202,7 +207,7 @@ footer#site-footer #footer-about a.footer-button {
 
 footer#site-footer section.horizontal-footer-section#footer-bottom-section {
   padding: 1.32rem 0;
-  margin: 2rem 2rem 1.32rem 2rem;
+  margin: 0rem 2rem 0rem 2rem;
   border-top: 0.05rem solid #666666;
 }
 
@@ -284,7 +289,7 @@ footer#site-footer #footer-social-buttons img:hover {
   }
 
   footer#site-footer #footer-about {
-      margin-bottom: 3rem;
+      /* margin-bottom: 3rem; */
   }
 
   footer#site-footer .footer-columns-large,
@@ -294,7 +299,7 @@ footer#site-footer #footer-social-buttons img:hover {
 
   footer#site-footer .footer-columns {
       margin-top: 0;
-      margin-bottom: 4rem;
+      /* margin-bottom: 4rem; */
   }
 
   footer#site-footer .footer-columns:last-child {

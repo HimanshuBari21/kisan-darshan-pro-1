@@ -30,7 +30,7 @@ function AddItemToStore() {
             firebase.storage().ref('/items').child(`${TIME_STEMP}.${imgExtRemover()}`).getDownloadURL().then((event) => {
                 delete itemDetail.item_image
 
-                firebase.database().ref('item-to-verify').push({ ...itemDetail, imgUrl: event, farmerUID: user.userAuthData.uid, timeStamp: TIME_STEMP }).then(() => {
+                firebase.database().ref('item-to-verify').push({ ...itemDetail, imgUrl: event, sellerUID: user.userAuthData.uid, timeStamp: TIME_STEMP }).then(() => {
                     Swal.fire("Item Registerd Successfully!", '', 'success')
                 })
             })
@@ -79,9 +79,10 @@ function AddItemToStore() {
                         </div>
                         <div className="form-group col-lg-6 my-4">
                             <label className="form-label">Unit</label>
-                            <input onChange={handleFormChanges}
-                                required
-                                className="form-control" name="unit" type="text" />
+                            <select name="unit" className="form-control" onChange={handleFormChanges} >
+                                <option value="kg">KG</option>
+                                <option value="quintal">quintal</option>
+                            </select>
                         </div>
                     </div>
                     <div className="form-group my-4">

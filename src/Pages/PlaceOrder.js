@@ -73,7 +73,7 @@ function PlaceOrder() {
     rawCartData.map((item) => {
       products.map((product, index) => {
         if (item.itemId === product.id) {
-          TEMP_TOTAL_ARR.push({ ...product, price: parseFloat(product.price), itemQuantity: parseInt(item.quantity), itemId: item.id })
+          TEMP_TOTAL_ARR.push({ ...product, price: parseFloat(product.price), itemQuantity: parseInt(item.quantity), itemId: product.id })
         }
       })
     })
@@ -89,7 +89,11 @@ function PlaceOrder() {
       })
       tempArr.map((item) => {
         firebase.database().ref("orders/").push(item)
-        firebase.database().ref("users/").child(user.userAuthData.uid).child("orders").push(item)
+        firebase.database().ref("users/").child(user.userAuthData.uid).child("orders").push(item).then(
+          ()=>{
+            firebase.database().ref("users/").child(user.userAuthData.uid).child("cart").remove()
+          }
+        )
       })
       Swal.fire("Order placed successfully", "", "success").then(window.location.replace("/home"))
 

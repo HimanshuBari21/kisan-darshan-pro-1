@@ -5,79 +5,22 @@ import ProductHeader from '../Component/ProductHeader'
 import { AllProduct } from './Store'
 import { useDataLayerValue } from '../DataLayer/DataLayer'
 import Footer from '../Component/Footer'
+import { Link } from 'react-router-dom'
+import MyCarousel from '../Component/Carousel'
 
 
 function HomePage() {
-    const [{products}, dispatch] = useDataLayerValue()
+    const [{ products }, dispatch] = useDataLayerValue()
     return (
         <>
             <ProductHeader />
-            <div
-                id="carouselExampleControls"
-                className="carousel slide"
-                data-ride="carousel"
-            >
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img
-                            src="https://www.lalpathlabs.com/blog/wp-content/uploads/2019/01/Fruits-and-Vegetables.jpg"
-                            className="d-block w-100 gallery"
-                            alt=""
-                        />
-                    </div>
-                    <div className="carousel-item" data-interval="2000">
-                        <img
-                            src="https://previews.123rf.com/images/movingmoment/movingmoment1702/movingmoment170200096/71879129-sfondo-di-molti-cereali-e-legumi-in-piatti-di-ceramica-bianca-.jpg"
-                            className="d-block w-100 gallery"
-                            alt=""
-                        />
-                    </div>
-                    <div className="carousel-item" data-interval="2000">
-                        <img
-                            src="https://p1.nicelocal.in/preview/MmR8h-I_CUXnvVWZsON03A/630x384x85/1/e/b/original_60903940ddc19b04bf0317f6_6179d4e6827b6.jpg"
-                            className="d-block w-100 gallery"
-                            alt=""
-                        />
-                    </div>
-                    <div className="carousel-item" data-interval="2000">
-                        <img
-                            src="https://www.powertiller.in/images/10.jpg"
-                            className="d-block w-100 gallery"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <button
-                    className="carousel-control-prev"
-                    type="button"
-                    data-target="#carouselExampleControls"
-                    data-slide="prev"
-                >
-                    <span
-                        className="carousel-control-prev-icon"
-                        aria-hidden="true"
-                    ></span>
-                    <span className="sr-only">Previous</span>
-                </button>
-                <button
-                    className="carousel-control-next"
-                    type="button"
-                    data-target="#carouselExampleControls"
-                    data-slide="next"
-                >
-                    <span
-                        className="carousel-control-next-icon"
-                        aria-hidden="true"
-                    ></span>
-                    <span className="sr-only">Next</span>
-                </button>
-            </div>
+            <MyCarousel />
             <br />
             <div className="Home">
-               
+
                 <br />
                 <div className="container">
-                   <AllProduct itemsData={products} />
+                    <AllProduct itemsData={products} />
                 </div>
                 <div className="call-us">
                     <div className="call-img">

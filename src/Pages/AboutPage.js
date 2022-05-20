@@ -1,6 +1,7 @@
 import React from 'react'
-import userImage from '../assets/images/user-logo.jpg'
-import farmerGirl from '../assets/images/farmer-girl.jpg'
+import praveen from '../assets/images/praveen.jpg'
+import himanshu from '../assets/images/himanshu.jpg'
+import dhiraj from '../assets/images/dhiraj.jpg'
 import Footer from '../Component/Footer'
 import "../style/home.css"
 import "../style/templatemo-style.css"
@@ -12,49 +13,50 @@ function AboutPage() {
             <header className="row tm-welcome-section">
                 <h2 className="col-12 text-center tm-section-title">About Kishan Darshan</h2>
                 <p className="col-12 text-center">
-                The Goal of our Website is to provide a Platform for Farmers, Wholesaler, Bulk Buyers, and Daily Consumers, This Website helps farmer sell their Products to Consumers and Corporates Directly by eliminating Brokerage and, Extra Costs which will result into Low Prices of Products, while also delivering them Fresh Products (Fruits, Vegetables, Grains, and Pulses).
+                    The Goal of our Website is to provide a Platform for Farmers, Wholesaler, Bulk Buyers, and Daily Consumers, This Website helps farmer showcase their resources, agricultural activities and sell farm produce to Consumers and Corporates directly which brings the overall cost within the range for all; while also delivering them Fresh Products. The website also helps in connecting industry experts, market and farmers which will result in balancing market demand and farm production. Safety, hygiene and punctual delivery are our Responsibility.
 
-Corporates can directly buy products from Farmer with Rates that satisfies Farmer as well as Corporate and of Course Daily Buyer (Consumer) can also buy products mentioned above.
+                    Team eKisandarshan.
 
-Of course safety, hygiene and punctual delivery is our Responsibility.
-
-Team eKisandarshan. 
-
-Jai Jawan, Jai Kishan - Lal Bahadur Shastris
+                    Jai Jawan, Jai Kishan - Lal Bahadur Shastris
                 </p>
             </header>
             <div className="container">
                 <div className="row">
                     <article className="col-lg-6">
                         <figure className="tm-person">
-                            <img src={userImage} alt="Image" className="img-fluid tm-person-img" />
+                            <img src={praveen} style={{maxWidth: "200px"}} alt="Image" className="img-fluid tm-person-img" />
                             <figcaption className="tm-person-description">
                                 <h4 className="tm-person-name">Mr. Praveen Sharma</h4>
-                                <p className="tm-person-title">Founder</p>
-                                <p className="tm-person-about">Vivamus cursus leo nec sem feugiat sagittis.
-                                    Duis ut feugiat odio, sit amet accumsan
-                                    odio.</p>
+                                <p className="tm-person-title">Founder and Owner</p>
                                 <div>
-                                    <a href="https://fb.com" className="tm-social-link"><i className="fab fa-facebook tm-social-icon"></i></a>
                                     <a href="https://twitter.com" className="tm-social-link"><i className="fab fa-twitter tm-social-icon"></i></a>
-                                    <a href="https://instagram.com" className="tm-social-link"><i className="fab fa-instagram tm-social-icon"></i></a>
                                 </div>
                             </figcaption>
                         </figure>
                     </article>
                     <article className="col-lg-6">
                         <figure className="tm-person">
-                            <img src={userImage} alt="Image" className="img-fluid tm-person-img" />
+                            <img src={himanshu} alt="Image" style={{maxWidth: "200px"}} className="img-fluid tm-person-img" />
                             <figcaption className="tm-person-description">
-                                <h4 className="tm-person-name">Valentina Martin</h4>
-                                <p className="tm-person-title">Culinary Director</p>
-                                <p className="tm-person-about">Praesent non vulputate elit. Orci varius
-                                    natoque penatibus et magnis montes, nascetur ridiculus mus.</p>
+                                <h4 className="tm-person-name">Himanshu Bari</h4>
+                                <p className="tm-person-title">UI UX Designer and R&D</p>
                                 <div>
-                                    <a href="https://fb.com" className="tm-social-link"><i className="fab fa-facebook tm-social-icon"></i></a>
+                                    
                                     <a href="https://twitter.com" className="tm-social-link"><i className="fab fa-twitter tm-social-icon"></i></a>
-                                    <a href="https://instagram.com" className="tm-social-link"><i className="fab fa-instagram tm-social-icon"></i></a>
-                                    <a href="https://youtube.com" className="tm-social-link"><i className="fab fa-youtube tm-social-icon"></i></a>
+                                    
+                                   
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article className="col-lg-12">
+                        <figure className="tm-person">
+                            <img src={dhiraj} alt="Image" style={{maxWidth: "200px"}} className="img-fluid tm-person-img" />
+                            <figcaption className="tm-person-description">
+                                <h4 className="tm-person-name">Dhiraj Prajapati</h4>
+                                <p className="tm-person-title">Full Stack Developer</p>
+                                <div>
+                                    <a href="https://www.linkedin.com/in/dhiraj-prajapati-web-dev/" className="tm-social-link"><i className="fab fa-linkedin tm-social-icon"></i></a>
                                 </div>
                             </figcaption>
                         </figure>

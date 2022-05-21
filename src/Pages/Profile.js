@@ -151,7 +151,9 @@ const ProfileSec = () => {
                     </div>
                 </div>
             </form>
-            <AdvanceProfileSettings />
+           {
+               user.userData.farmerData &&  <AdvanceProfileSettings />
+           }
         </>
     )
 }

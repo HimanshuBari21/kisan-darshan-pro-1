@@ -61,7 +61,7 @@ function RegistrationPage() {
                                     <input required onChange={handleFormChanges} className="inputs-reg" type="text" name="address" id="address" placeholder="Address" />
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                    <input required onChange={handleFormChanges} className="inputs-reg" type="email" name="email" id="email" placeholder="Email (optional)" />
+                                    <input onChange={handleFormChanges} className="inputs-reg" type="email" name="email" id="email" placeholder="Email (optional)" />
                                 </div>
                                 <StateDisctrict formData={formData} handleFormChanges={handleFormChanges} />
                                 <br />

@@ -54,12 +54,66 @@ const ProfileSec = () => {
     }
     const updateProfile = (e) => {
         e.preventDefault()
+        delete formData.phone
         firebase.database().ref('users/').child(userData.userId).set({ ...userData, ...formData }).then(() => {
             Swal.fire("Your profile has update successfully!", "", "success")
         })
         // console.log({ ...userData, ...formData })
     }
     const objectLength = obj => Object.entries(obj).length
+
+    const ProgressBar = () => {
+
+
+        if (userData.userType === "farmer") {
+            if (userData.farmerData === undefined) {
+                return <div className="form-group align-items-center flex-column">
+                    <h1>Make Your profile now </h1>
+                    <Link to="/create-farmer-profile">
+                        <button className="btn btn-success">Make Farmer Profile</button>
+                    </Link>
+                </div>
+            }
+            else {
+                return <>
+                    <div className="my-3" >
+                        <h4>Complete Your farmer profile to unlock your store</h4>
+                        <p className="text-right">You have complited your <b className="text-dark">{(objectLength(userData.farmerData) / 4 * 100).toFixed(1)}%</b> farmer Profile</p>
+                        <div className="progress-bar">
+                            <div style={{ width: `${objectLength(userData.farmerData) / 4 * 100}%` }} className="progress-bar-child"></div>
+                        </div>
+                    </div>
+                </>
+            }
+        }
+        else if (userData.userType === "cooperate") {
+            if (userData.cooperateData) {
+                return <>
+                    <div className="my-3 text-center" >
+                        <h4>Complete Your profile to unlock your store</h4>
+                        <h1>Make Your profile now </h1>
+                        <Link to="/create-cooprate-profile" >
+                            <button className="btn btn-success">Make Your Profile</button>
+                        </Link>
+                    </div>
+                </>
+            }
+            else {
+                return (
+                    <>
+                        <div className="my-3" >
+                            <h4>Complete Your profile to unlock your store</h4>
+                            <p className="text-right">You have complited your <b className="text-dark">{(objectLength(userData.cooperateData) / 1 * 100).toFixed(1)}%</b> Profile</p>
+                            <div className="progress-bar">
+                                <div style={{ width: `${objectLength(userData.cooperateData) / 1 * 100}%` }} className="progress-bar-child"></div>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
+        }
+
+    }
     return (
         <>
             <ProductHeader />
@@ -107,56 +161,19 @@ const ProfileSec = () => {
                                     Update Profile
                                 </button>
                             </div>
-                            {
-                                userData.userType === "farmer" ?
-                                    userData.farmerData === undefined
-                                        ?
-                                        <div className="form-group align-items-center flex-column">
-                                            <h1>Make Your profile now </h1>
-                                            <Link to="/create-farmer-profile">
-                                                <button className="btn btn-success">Make Farmer Profile</button>
-                                            </Link>
-                                        </div>
-                                        :
-                                        <>
-                                            <div className="my-3" >
-                                                <h4>Complete Your farmer profile to unlock your store</h4>
-                                                <p className="text-right">You have complited your <b className="text-dark">{(objectLength(userData.farmerData) / 4 * 100).toFixed(1)}%</b> farmer Profile</p>
-                                                <div className="progress-bar">
-                                                    <div style={{ width: `${objectLength(userData.farmerData) / 4 * 100}%` }} className="progress-bar-child"></div>
-                                                </div>
-                                            </div></>
-                                    : userData.userType === "cooperate" && !userData.cooperateData ?
-                                        <>
-                                            <div className="my-3 text-center" >
-                                                <h4>Complete Your profile to unlock your store</h4>
-                                                <h1>Make Your profile now </h1>
-                                                <Link to="/create-cooprate-profile" >
-                                                    <button className="btn btn-success">Make Your Profile</button>
-                                                </Link>
-                                            </div>
-                                        </>
-                                        :
-                                        <>
-                                            <div className="my-3" >
-                                                <h4>Complete Your profile to unlock your store</h4>
-                                                <p className="text-right">You have complited your <b className="text-dark">{(objectLength(userData.cooperateData) / 1 * 100).toFixed(1)}%</b> Profile</p>
-                                                <div className="progress-bar">
-                                                    <div style={{ width: `${objectLength(userData.cooperateData) / 1 * 100}%` }} className="progress-bar-child"></div>
-                                                </div>
-                                            </div></>
-                            }
 
                         </div>
                     </div>
                 </div>
             </form>
-           {
-               user.userData.farmerData &&  <AdvanceProfileSettings />
-           }
+            {userData.userType!=="consumer" && <ProgressBar/>}
+            {
+                user.userData.farmerData && <AdvanceProfileSettings />
+            }
         </>
     )
 }
+
 const AdvanceProfileSettings = () => {
     const [{ user, crops, category }] = useDataLayerValue()
     const userData = user.userData;
@@ -203,7 +220,8 @@ const AdvanceProfileSettings = () => {
         delete farmerData.fieldSizeUnit
         // console.log({ ...userData.farmerData, ...farmerData })
         firebase.database().ref('users').child(uid).child("farmerData").set({ ...userData.farmerData, ...farmerData }).then(() => {
-            Swal.fire("Farmer Profile Updated Successfully!", '', 'success')})
+            Swal.fire("Farmer Profile Updated Successfully!", '', 'success')
+        })
     }
 
 

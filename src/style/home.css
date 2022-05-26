@@ -6,8 +6,13 @@
   border-radius: 2px;
   overflow: hidden;
   border: 0.6px solid rgb(182, 180, 180);
-  max-width: 800px;
+  /* max-width: 800px; */
 }
+/* @media (max-width:600px) {
+  .carousel{
+    height: 30vh;
+  }
+} */
 .category-button {
   width: 60vw;
   min-width: 260px;
@@ -103,4 +108,17 @@
   footer{
     display: block;
   }
+}
+.img-block{
+  width: 100vw;
+  height: 50vh;
+}
+.carousel-item:nth-child(1){
+  background-color: aqua;
+}
+.carousel-item:nth-child(2){
+  background-color: crimson;
+}
+.carousel-item:nth-child(3){
+  background-color: green ;
 }

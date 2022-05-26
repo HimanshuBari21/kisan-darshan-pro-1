@@ -88,7 +88,7 @@ label {
   line-height: 32px;
 }
 
-input[type="radio"] {
+.registration input[type="radio"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -105,7 +105,7 @@ input[type="radio"] {
   top: 2px;
 }
 
-input[type="radio"]:checked {
+.registration input[type="radio"]:checked {
   border: 8px solid rgb(0, 157, 255);
 }
 @media (max-width: 611px) {

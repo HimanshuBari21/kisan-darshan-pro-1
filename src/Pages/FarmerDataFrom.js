@@ -104,7 +104,7 @@ function FarmerDataForm() {
                                         <div className="row">
                                             <div className="col-lg-9">
                                                 <div className="d-flex justify-content-center">
-                                                    <input required onChange={handleFormChanges} className="inputs-reg" type="number" name="fieldArea" placeholder="Are of your farm" />
+                                                    <input required onChange={handleFormChanges} className="inputs-reg" type="number" name="fieldArea" placeholder="Area of your farm" />
                                                 </div>
                                             </div>
                                             <div className="col-lg-3">
@@ -123,19 +123,13 @@ function FarmerDataForm() {
                                             </div>
                                         </div>
 
+                                        
                                         <div className="d-flex">
                                             <h4 className='mr-4'>
-                                                Do you have KCC
+                                                Do you have Irrigation Facility 
                                             </h4>
-                                            <input onChange={handleFormChanges} type="radio" id="kcc_yes" name="kcc" value={"yes"} /><label htmlFor="kcc_yes">Yes</label>
-                                            <input onChange={handleFormChanges} type="radio" id="kcc_no" name="kcc" value={"no"} /><label htmlFor="kcc_no">No</label>
-                                        </div>
-                                        <div className="d-flex">
-                                            <h4 className='mr-4'>
-                                                Do you have Crop Insurance
-                                            </h4>
-                                            <input onChange={handleFormChanges} type="radio" id="crop_insurance_yes" name="cropInsurance" value={"yes"} /><label htmlFor="crop_insurance_yes">Yes</label>
-                                            <input onChange={handleFormChanges} type="radio" id="crop_insurance_no" name="cropInsurance" value={"no"} /><label htmlFor="crop_insurance_no">No</label>
+                                            <input onChange={handleFormChanges} type="radio" id="crop_insurance_yes" name="irrigation" value={"yes"} /><label htmlFor="crop_insurance_yes">Yes</label>
+                                            <input onChange={handleFormChanges} type="radio" id="crop_insurance_no" name="irrigation" value={"no"} /><label htmlFor="crop_insurance_no">No</label>
                                         </div>
                                         <div className="d-flex">
                                             <h4 className='mr-4'>

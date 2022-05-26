@@ -56,7 +56,7 @@ const AllProduct = (props) => {
     const itemsData = props.itemsData
     if (itemsData) {
         return (
-            <div className="py-5" >
+            <div>
                 <hr />
                 {
                     category.map((category, indexs) => {

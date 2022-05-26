@@ -121,8 +121,8 @@ function App() {
             <Route exact path="/home" element={<HomePage />} />
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/profile" element={<Profile />} />
-            {/* <Route exact path="/store/:category" element={<Store />} />
-            <Route exact path="/store" element={<Store />} /> */}
+            <Route exact path="/store/:category" element={<Store />} />
+            <Route exact path="/store" element={<Store />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/register" element={<RegistrationPage />} />
             <Route exact path="/place-order" element={<PlaceOrder />} />

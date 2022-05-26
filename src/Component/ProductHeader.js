@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import '../style/navbar.css';
 import firebase from '../firebase'
 import { useDataLayerValue } from '../DataLayer/DataLayer';
 function ProductHeader() {
     const [{ category, user, crops }] = useDataLayerValue()
     const userData = user.userData
+    const navigate = useNavigate()
     const [moreMenuOpen, setMoreMenuOpen] = useState(false)
     const [subMenuOpen, setSubMenuOpen] = useState({
         isOpen: false,
@@ -25,6 +26,7 @@ function ProductHeader() {
             isOpen: state,
             currentCategory: category
         })
+        navigate(`/store/${category}`)
     }
     const closeWelcome = () => {
         localStorage.setItem("visited", true)

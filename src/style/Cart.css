@@ -194,9 +194,28 @@ input[type=number] {
     scroll-snap-type: x mandatory;
 }
 
-.card-wrap::-webkit-scrollbar{
-    background-color: #00000000;
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  border: 0.8px solid grey;
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #000000; 
+}
+
 .dropdown-item.active,
 .dropdown-item:active {
     background-color: white !important;

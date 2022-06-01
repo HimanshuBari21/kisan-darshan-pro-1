@@ -50,10 +50,10 @@ function RegistrationPage() {
                                 </div>
                                 <div className="d-flex justify-content-center">
                                 <select required name="userType" className="inputs-reg" onChange={handleFormChanges} id="inputState">
-                                    <option value="">Who are you</option>
-                                    <option value="consumer">Consumer</option>
-                                    <option value="farmer">Farmer</option>
-                                    <option value="cooperate">Seller or Manufacturer</option>
+                                    <option value="">Select your Type</option>
+                                    <option value="consumer">I want to Buy (Consumer)</option>
+                                    <option value="farmer">I want to Sell and Buy (Farmer)</option>
+                                    <option value="cooperate">I want to Sell and Buy (Seller/ Manufacturer)</option>
 
                                 </select>
                                 </div>

@@ -12,13 +12,7 @@ function AboutPage() {
             <ProductHeader />
             <header className="row tm-welcome-section">
                 <h2 className="col-12 text-center tm-section-title">About Kishan Darshan</h2>
-                <p className="col-12 text-center">
-                    The Goal of our Website is to provide a Platform for Farmers, Wholesaler, Bulk Buyers, and Daily Consumers, This Website helps farmer showcase their resources, agricultural activities and sell farm produce to Consumers and Corporates directly which brings the overall cost within the range for all; while also delivering them Fresh Products. The website also helps in connecting industry experts, market and farmers which will result in balancing market demand and farm production. Safety, hygiene and punctual delivery are our Responsibility.
-
-                    Team eKisandarshan.
-
-                    Jai Jawan, Jai Kishan - Lal Bahadur Shastris
-                </p>
+                <p className="col-12 text-justify">The Goal of our Website is to provide a Platform for Farmers, Wholesaler, Bulk Buyers, and Daily Consumers, This Website helps farmer showcase their resources, agricultural activities and sell farm produce to Consumers and Corporates directly which brings the overall cost within the range for all; while also delivering them Fresh Products. The website also helps in connecting industry experts, market and farmers which will result in balancing market demand and farm production. Safety, hygiene and punctual delivery are our Responsibility. <br/><br/> -Team eKisandarshan. <br/><br/><i>Jai Jawan, Jai Kishan - Lal Bahadur Shastris</i></p>
             </header>
             <div className="container">
                 <div className="row">

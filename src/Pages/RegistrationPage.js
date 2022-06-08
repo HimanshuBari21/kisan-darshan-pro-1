@@ -42,20 +42,20 @@ function RegistrationPage() {
             return (
                 <>
                     <div className="registration">
-                        <form  onSubmit={registrUser}>
+                        <form onSubmit={registrUser}>
                             <div id="wrapper">
                                 <legend>Registration</legend>
                                 <div className="d-flex justify-content-center">
                                     <input required onChange={handleFormChanges} className="inputs-reg" type="text" name="name" id="name" placeholder="Your Name" />
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                <select required name="userType" className="inputs-reg" onChange={handleFormChanges} id="inputState">
-                                    <option value="">Select your Type</option>
-                                    <option value="consumer">I want to Buy (Consumer)</option>
-                                    <option value="farmer">I want to Sell and Buy (Farmer)</option>
-                                    <option value="cooperate">I want to Sell and Buy (Seller/ Manufacturer)</option>
+                                    <select required name="userType" className="inputs-reg" onChange={handleFormChanges} id="inputState">
+                                        <option value="">Select your Type</option>
+                                        <option value="consumer">I want to Buy (Consumer)</option>
+                                        <option value="farmer">I want to Sell and Buy (Farmer)</option>
+                                        <option value="cooperate">I want to Sell and Buy (Seller/ Manufacturer)</option>
 
-                                </select>
+                                    </select>
                                 </div>
                                 <div className="d-flex justify-content-center">
                                     <input required onChange={handleFormChanges} className="inputs-reg" type="text" name="address" id="address" placeholder="Address" />

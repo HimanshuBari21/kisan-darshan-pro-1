@@ -19,6 +19,7 @@ import AddItemToStore from './Pages/AddItemToStore';
 import CooprateProfileCreate from './Pages/CooperateProfileCreate';
 import CooperateStore from './Pages/CooperateStore';
 import Orders from './Pages/Orders';
+import Corporate from './Pages/CooperateData';
 function App() {
     const [{ user }, dispatch] = useDataLayerValue()
     var currentUser = firebase.auth().currentUser
@@ -132,8 +133,12 @@ function App() {
             <Route exact path="/create-farmer-profile" element={<FarmerDataForm />} />
             <Route exact path="/farmer/store" element={<FarmerStore />} />
             <Route exact path="farmer/add-item-to-store" element={<AddItemToStore />} />
+            <Route exact path="/coorperate/add-item-to-store" element={<AddItemToStore />} />
+
             <Route exact path="/create-cooprate-profile" element={<CooprateProfileCreate />} />
             <Route exact path="cooperate/store" element={<CooperateStore />} />
+            {/* <Route exact path="cooperate" element={<Corporate />} /> */}
+
             {/*<Route exact path="/contact" element={<ContactPage />} />
             <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/orders" element={<Orders />} />

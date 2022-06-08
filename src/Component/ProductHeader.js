@@ -27,13 +27,14 @@ function ProductHeader() {
             currentCategory: category
         })
         navigate(`/store/${category}`)
+        closeMoreMenu(false)
     }
     const closeWelcome = () => {
         localStorage.setItem("visited", true)
         console.log(localStorage.getItem("visited"))
         document.querySelector(".kd-index").style.display = "none"
     }
-    
+
     return (
         <>
             {
@@ -59,7 +60,9 @@ function ProductHeader() {
                         <li className="nav-item active">
                             <NavLink className="nav-link" to="/home">Home <span className="sr-only">(current)</span></NavLink>
                         </li>
-
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/about">About Us</NavLink>
+                        </li>
 
                         <li className="nav-item">
                             {
@@ -139,7 +142,7 @@ function ProductHeader() {
 
                                 )
                             }
-                            {
+                            {/* {
                                 subMenuOpen.currentCategory !== null && <div className="sub-menu-crop">
                                     <div className="nav-link" onClick={() => { actOnSubMenu(false, null) }} ><i className="fa-solid fa-arrow-left"></i> Back</div>
 
@@ -152,7 +155,7 @@ function ProductHeader() {
                                     }
 
                                 </div>
-                            }
+                            } */}
                         </div>
                     </div>
                 }

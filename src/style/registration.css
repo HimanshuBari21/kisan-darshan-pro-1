@@ -130,3 +130,9 @@ label {
     width: auto;
   }
 }
+.registration.profile{
+  background-color: #fff;
+}
+.registration.profile #wrapper{
+  box-shadow: none;
+}

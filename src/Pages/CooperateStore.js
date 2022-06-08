@@ -1,11 +1,25 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import ProductHeader from '../Component/ProductHeader'
 import { useDataLayerValue } from '../DataLayer/DataLayer'
-
+import firebase from "../firebase"
 function CooperateStore() {
   const [{ user, itemToVerify, products }] = useDataLayerValue()
   const navigate = useNavigate()
+  const removeItem = (e, id) => {
+    switch (e) {
+      case "queue":
+        firebase.database().ref('item-to-verify').child(id).remove().then(() => {
+          Swal.fire("Item remove successfully")
+        })
+      case "fromStore":
+        firebase.database().ref('items').child(id).remove().then(() => {
+          Swal.fire("Item remove successfully")
+        })
+      default:
+    }
+  }
   if (user.userAuthData === null) {
     navigate("/login")
   }
@@ -59,7 +73,7 @@ function CooperateStore() {
                         </div>
                         <br />
                         <div className="row">
-                          <div className="col-xs-2"><button className="btn remove btn-danger"><i className="fa-solid fa-trash"></i> Remove Item</button></div>
+                          <div className="col-xs-2"><button onClick={() => removeItem("queue", item.id)} className="btn remove btn-danger"><i className="fa-solid fa-trash"></i> Remove Item</button></div>
                         </div>
                       </div>
                     </div>
@@ -88,9 +102,7 @@ function CooperateStore() {
                                 <b>Reason:</b>{item.reason === "img" ? "Your img was perfect" : 'You product is over priced'}
                               </div>
                               <br />
-                              <div className="row">
-                                <div className="col-xs-2"><button className="btn remove btn-danger"><i className="fa-solid fa-trash"></i> Remove Item</button></div>
-                              </div>
+
                             </div>
                           </div>
                         )
@@ -102,7 +114,7 @@ function CooperateStore() {
                 <br /><br />
                 <div className="d-flex add-items justify-content-between">
                   <h5>Your Products For Sell</h5>
-                  <Link to={'/farmer/add-item-to-store'}>
+                  <Link to={'/coorperate/add-item-to-store'}>
                     <button className="btn-success btn" style={{ margin: "0 !important" }}>
                       <i className="fa-solid fa-plus"></i>
                       Add Item To Sell
@@ -111,27 +123,31 @@ function CooperateStore() {
                 </div>
                 {
                   farmerProductVerified.length ?
-                    farmerProductVerified.map((item, index) => {
-                      var item = item.item
-                      return (
-                        <div className="card products" key={index}>
-                          <div className="cart-img">
-                            <img className="card-img-top" style={{ width: "100%!important" }} src={item.imgUrl} alt="Card image cap" />
-                          </div>
-                          <div className="card-body">
-                            <h5 className="card-title">{item.name}</h5>
-                            <p className="price">Rs. {item.price}</p>
-                            <div className="row">
-                              {/* <QualityControl cartId={props.cartId} /> */}
+                    <div className="card-wrap">
+                      {
+                        farmerProductVerified.map((item, index) => {
+                          var item = item.item
+                          return (
+                            <div className="card products" key={index}>
+                              <div className="cart-img">
+                                <img className="card-img-top" style={{ width: "100%!important" }} src={item.imgUrl} alt="Card image cap" />
+                              </div>
+                              <div className="card-body">
+                                <h5 className="card-title">{item.name}</h5>
+                                <p className="price">Rs. {item.price}</p>
+                                <div className="row">
+                                  {/* <QualityControl cartId={props.cartId} /> */}
+                                </div>
+                                <br />
+                                {/* <div className="row">
+                                  <div className="col-xs-2"><button onClick={() => removeItem("fromStore", item.id)} className="btn remove btn-danger"><i className="fa-solid fa-trash"></i> Remove Item</button></div>
+                                </div> */}
+                              </div>
                             </div>
-                            <br />
-                            <div className="row">
-                              <div className="col-xs-2"><button className="btn remove btn-danger"><i className="fa-solid fa-trash"></i> Remove Item</button></div>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    })
+                          )
+                        })
+                      }
+                    </div>
                     : <div className="no-login-cart">
                       <div className="circle">
                         <i class="fa-solid fa-store"></i>

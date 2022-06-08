@@ -6,6 +6,7 @@ import Footer from '../Component/Footer'
 import "../style/home.css"
 import "../style/templatemo-style.css"
 import ProductHeader from '../Component/ProductHeader'
+import { Link } from 'react-router-dom'
 function AboutPage() {
     return (
         <>
@@ -14,6 +15,10 @@ function AboutPage() {
                 <h2 className="col-12 text-center tm-section-title">About Kishan Darshan</h2>
                 <p className="col-12 text-justify">The Goal of our Website is to provide a Platform for Farmers, Wholesaler, Bulk Buyers, and Daily Consumers, This Website helps farmer showcase their resources, agricultural activities and sell farm produce to Consumers and Corporates directly which brings the overall cost within the range for all; while also delivering them Fresh Products. The website also helps in connecting industry experts, market and farmers which will result in balancing market demand and farm production. Safety, hygiene and punctual delivery are our Responsibility. <br/><br/> -Team eKisandarshan. <br/><br/><i>Jai Jawan, Jai Kishan - Lal Bahadur Shastris</i></p>
             </header>
+            <div className="text-center">
+                <Link to="/contact"><button className="btn btn-success">Contact Us</button></Link>
+            </div>
+            <br /> <br />
             <div className="container">
                 <div className="row">
                     <article className="col-lg-6">

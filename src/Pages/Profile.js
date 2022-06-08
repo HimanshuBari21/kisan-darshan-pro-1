@@ -99,14 +99,17 @@ const ProfileSec = () => {
                 </>
             }
             else {
+
                 return (
                     <>
-                        <div className="my-3" >
+                        <div className="my-3 text-center" >
                             <h4>Complete Your profile to unlock your store</h4>
-                            <p className="text-right">You have complited your <b className="text-dark">{(objectLength(userData.cooperateData) / 1 * 100).toFixed(1)}%</b> Profile</p>
+                            {/* <p className="text-right">You have complited your <b className="text-dark">{(objectLength(userData.cooperateData) / 1 * 100).toFixed(1)}%</b> Profile</p>
                             <div className="progress-bar">
                                 <div style={{ width: `${objectLength(userData.cooperateData) / 1 * 100}%` }} className="progress-bar-child"></div>
-                            </div>
+                            </div> */}
+
+                            <Link to="/create-cooprate-profile"><button className="btn btn-success">Create Profile</button></Link>
                         </div>
                     </>
                 )
@@ -166,14 +169,116 @@ const ProfileSec = () => {
                     </div>
                 </div>
             </form>
-            {userData.userType!=="consumer" && <ProgressBar/>}
+            {/* {userData.userType !== "consumer" && <ProgressBar />} */}
             {
                 user.userData.farmerData && <AdvanceProfileSettings />
+            }
+            {
+                userData.userType === "cooperate" && <AdvanceProfileSettingsCO />
             }
         </>
     )
 }
+const AdvanceProfileSettingsCO = () => {
+    const [{ user, crops, category }] = useDataLayerValue()
+    const userData = user.userData;
+    const [formData, setFormData] = useState([])
+    let name, value;
+    const userAuthData = user.userAuthData;
+    const handleFormChanges = (event) => {
+        name = event.target.name;
+        value = event.target.value;
+        setFormData({ ...formData, [name]: value });
+    }
+    const upDataProfile = (e) => {
+        const newFormData = {...userData.cooperateData, ...formData}
+        e.preventDefault()
+        Object.keys(newFormData).map((col) =>{
+            if(newFormData[col]===""){
+                delete newFormData[col]
+            }
+        } )
+        firebase.database().ref('users').child(user.userAuthData.uid).child("cooperateData").set(newFormData).then(() => {
+            Swal.fire("Profile Updated Successfully!", '', 'success').then(() => { window.location.replace('/profile') })
+        })
+        // console.log(formData)
+    } 
+    const type = [{
+     value: "Manufacturer",
+     text: "Manufacturer"
+    },
+    {
+        value: "Seller-Vendors-Distributor",
+        text: "Seller/Vendors/Distributor"
+    },
+    {
+        value: "FPO-SHG",
+        text: "FPO (Farmer Producer Orgnisation)/SHG (Self Help Group)"
+    }]
+    if (user.userData.cooperateData===undefined) {
+        return <Link to="/create-cooprate-profile"><button className="btn btn-success">fuck Profile</button></Link>
+    }
+   
+    else {
+        return (
+            <>
+                <div className="profile registration">
+                    <form onSubmit={upDataProfile}>
+                        <div id="wrapper">
+                            <legend>Advance Profile</legend>
+                            <div>
+                                <input onChange={handleFormChanges} defaultValue={userData.cooperateData.name} required className="inputs-reg" type="text" name="name" id="name" placeholder="Company Name" />
+                            </div>
+                            <select onChange={handleFormChanges} defaultValue={userData.cooperateData.company_type} required className="inputs-reg" name="company_type" id="company-type">
+                                {
+                                type.map((item, index)=>{
+                                    return <option selected={item.value===userData.cooperateData.company_type} value={item.value}>{item.text}</option>
+                                })
+                                }
+                            </select>
+                            <div>
+                                <input onChange={handleFormChanges} defaultValue={userData.cooperateData.contact_person_name} required className="inputs-reg" type="text" name="contact_person_name" id="contact-person-name"
+                                    placeholder="Contact Person Name" />
+                            </div>
+                            <div>
+                                <input onChange={handleFormChanges} defaultValue={userData.cooperateData.contact_person_email} required className="inputs-reg" type="text" name="contact_person_email" id="contact-person-email"
+                                    placeholder="Contact Person Email" />
+                            </div>
+                            <div>
+                                <input onChange={handleFormChanges} defaultValue={userData.cooperateData.contact_person_phone} required className="inputs-reg" type="phone " max="9999999999" min="1000000000" maxlength="10" minlength="10" name="contact_person_phone"
+                                    id="contact-person-phone" placeholder="Contact Person Phone" />
+                            </div>
+                            <div>
+                                <input onChange={handleFormChanges} defaultValue={userData.cooperateData.address} required className="inputs-reg" type="text" name="address" id="address"
+                                    placeholder="Company Address (Please provide full address)" />
+                                <br />
+                                <div>
+                                    <input onChange={handleFormChanges} className="inputs-reg" type="number" name="gst" id="gst" placeholder="GST IN (optional)" />
+                                </div>
+                                <div>
+                                    <input onChange={handleFormChanges} className="inputs-reg" type="number" name="iso" id="iso"
+                                        placeholder="ISO Certification Number (optional)" />
+                                </div>
+                                <div>
+                                    <input onChange={handleFormChanges} className="inputs-reg" type="text" name="website" id="website"
+                                        placeholder="Company Website (optional)" />
+                                </div>
 
+                            </div>
+
+
+
+                            {/* <StateDisctrict formData={formData} handleFormChanges={handleFormChanges} /> */}
+                            <br />
+                            <input className="inputs-reg" value="Submit" id="submit" type="submit" />
+                            <br /><br />
+                        </div>
+                    </form>
+                </div>
+            </>
+        )
+    }
+}
 const AdvanceProfileSettings = () => {
     const [{ user, crops, category }] = useDataLayerValue()
     const userData = user.userData;
@@ -315,15 +420,15 @@ const AdvanceProfileSettings = () => {
                                 <h4 className='mr-4'>
                                     Do you have Crop Insurance
                                 </h4>
-                                <input required onChange={handleFormChanges} type="radio" id="crop_insurance_yes" defaultChecked={userData.farmerData.cropInsurance === "yes" ? true : false} name="cropInsurance" value={"yes"} /><label htmlFor="crop_insurance_yes">Yes</label>
-                                <input required onChange={handleFormChanges} type="radio" id="crop_insurance_no" defaultChecked={userData.farmerData.cropInsurance === "no" ? true : false} name="cropInsurance" value={"no"} /><label htmlFor="crop_insurance_no">No</label>
+                                <input defaultValue={userData.cooperateData.name} required onChange={handleFormChanges} type="radio" id="crop_insurance_yes" defaultChecked={userData.farmerData.cropInsurance === "yes" ? true : false} name="cropInsurance" value={"yes"} /><label htmlFor="crop_insurance_yes">Yes</label>
+                                <input defaultValue={userData.cooperateData.name} required onChange={handleFormChanges} type="radio" id="crop_insurance_no" defaultChecked={userData.farmerData.cropInsurance === "no" ? true : false} name="cropInsurance" value={"no"} /><label htmlFor="crop_insurance_no">No</label>
                             </div>
                             <div className="d-flex">
                                 <h4 className='mr-4'>
                                     Do you use chemical fertilizers?
                                 </h4>
-                                <input required onChange={handleFormChanges} defaultChecked={userData.farmerData.chemicalFertilizers === "yes" ? true : false} type="radio" id="chemical_fertilizer_yes" name="chemicalFertilizers" value={"yes"} /><label htmlFor="chemical_fertilizer_yes">Yes</label>
-                                <input required onChange={handleFormChanges} defaultChecked={userData.farmerData.chemicalFertilizers === "no" ? true : false} type="radio" id="chemical_fertilizer_no" name="chemicalFertilizers" value={"no"} /><label htmlFor="chemical_fertilizer_no">No</label>
+                                <input defaultValue={userData.cooperateData.name} required onChange={handleFormChanges} defaultChecked={userData.farmerData.chemicalFertilizers === "yes" ? true : false} type="radio" id="chemical_fertilizer_yes" name="chemicalFertilizers" value={"yes"} /><label htmlFor="chemical_fertilizer_yes">Yes</label>
+                                <input defaultValue={userData.cooperateData.name} required onChange={handleFormChanges} defaultChecked={userData.farmerData.chemicalFertilizers === "no" ? true : false} type="radio" id="chemical_fertilizer_no" name="chemicalFertilizers" value={"no"} /><label htmlFor="chemical_fertilizer_no">No</label>
                             </div>
                             {/* <StateDisctrict formData={formData} handleFormChanges={handleFormChanges} /> */}
                             <br />

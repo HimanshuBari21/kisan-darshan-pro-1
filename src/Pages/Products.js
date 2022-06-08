@@ -145,7 +145,7 @@ const FilteredProducts = (props) => {
             return (
             <>
             <br /><br /><br /><br />
-            <h1>Nothing in this category</h1>
+            <h1>This Product Coming to your Location Soon</h1>
             </>
                 )
         }
